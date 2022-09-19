@@ -29,41 +29,47 @@ router.get('/', async(req,res) =>{
 })
 
 router.post('/' ,async(req,res) => {
-    const {
-        name,
-        imageCard,
-        imageDetail,
-        height,
-        weight,
-        baseExp,
-        hp,
-        attack,
-        defense,
-        speed,
-        created,
-        types
-      } = req.body;
+    try{
+        const {
+            name,
+            imageCard,
+            imageDetail,
+            height,
+            weight,
+            baseExp,
+            hp,
+            attack,
+            defense,
+            speed,
+            types
+          } = req.body;
+        
+        let pokemonCreated = await Pokemon.create({
+            name,
+            imageCard,
+            imageDetail,
+            height,
+            weight,
+            baseExp,
+            hp,
+            attack,
+            defense,
+            speed,
+        })
+        let TypeDb = await Type.findAll({
+            where: {name: types}
+        })
+        //const TypeMap = TypeDb.map((el) => el.dataValues.typeId)
+
+        pokemonCreated.addType(TypeDb)
+        res.status(200).send("Pokemon created successfully")
+    }
+    catch(err){
+        res.status(404).send('cant create pokemon')
+    }
     
-    let pokemonCreated = await Pokemon.create({
-        name,
-        imageCard,
-        imageDetail,
-        height,
-        weight,
-        baseExp,
-        hp,
-        attack,
-        defense,
-        speed,
-        created
-    })
-    let TypeDb = await Type.FindAll({
-        where: {name: types}
-    })
-    const TypeMap = TypeDb.map((e) => e.dataValues.id)
-    pokemonCreated.addType(TypeMap)
-    res.status(200).send("Pokemon creado con exito")
 })
+
 
 router.get('/:id', async(req, res) => {
     let {id} = req.params

@@ -1,4 +1,4 @@
-const { DataTypes, UUID, UUIDV4, TEXT, INTEGER, BOOLEAN } = require('sequelize');
+const { DataTypes, UUID, UUIDV4, TEXT, INTEGER, BOOLEAN, FLOAT, STRING } = require('sequelize');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -11,49 +11,40 @@ module.exports = (sequelize) => {
       defaultValue: UUIDV4
     },
     name: {
-      type: DataTypes.STRING,
+      type: STRING,
       allowNull: false,
     },
     imageCard: {
       type: TEXT,
-      allowNull: false
     },
     imageDetail: {
       type: TEXT,
-      allowNull: false
     },
     height: {
-      type: INTEGER,
-      allowNull: false
+      type: FLOAT,
     },
     weight: {
-      type: INTEGER,
-      allowNull: false
+      type: FLOAT,
     },
     baseExp: {
-      type: INTEGER,
-      allowNull: true
+      type: FLOAT,
     },
     hp: {
-      type: INTEGER,
-      allowNull: true
+      type: FLOAT,
     },
     attack: {
-      type: INTEGER,
-      allowNull: true
+      type: FLOAT,
     },
     defense: {
-      type: INTEGER,
-      allowNull: true
+      type: FLOAT,
     },
     speed: {
-      type: INTEGER,
-      allowNull: true
+      type: FLOAT,
     },
-    created: {
+    /*created: {
       type: BOOLEAN,
       allowNull: false,
       defaultValue: true
-    }
+    }*/
   });
 };

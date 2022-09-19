@@ -19,7 +19,7 @@ const {Pokemon, Type} = require('../db')
             speed: el.data.stats[5].base_stat,
             height: el.data.height,
             weight: el.data.weight,
-            types: el.data.types.map(el => el.type.name),
+            types: el.data.types.map(el => {return {name:el.type.name}}),//es para tener un objeto y acceder al name desde el front 
         }
         return obj
     })

@@ -17,6 +17,7 @@ router.get('/', async(req, res) => {
         })
     })
     const infoTypeDb = await Type.findAll()
+    console.log(infoTypeDb)
     res.status(200).json(infoTypeDb)
     
 })
