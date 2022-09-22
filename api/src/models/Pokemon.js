@@ -41,10 +41,10 @@ module.exports = (sequelize) => {
     speed: {
       type: FLOAT,
     },
-    createdInDb: {
+    /*createdInDb: {
       type: BOOLEAN,
       allowNull: false,
       defaultValue: true
-    }
+    }*/
   });
 };

@@ -4,6 +4,7 @@ import { getPokemons, filterByType, filterCreated, orderByName, orderByAttack} f
 import { Link } from 'react-router-dom'
 import Card from './Card'
 import Paginado from './Paginado'
+import SearchBar from './SearchBar'
 
 export default function Home(){
 
@@ -32,6 +33,7 @@ export default function Home(){
     }
 
     function handleFilterType(e){
+        e.preventDefault()
         dispatch(filterByType(e.target.value))
     }
 
@@ -104,11 +106,13 @@ export default function Home(){
             allPokemons={allPokemons.length}
             paginado={paginado}
             />
+            <SearchBar/>
             {
                 currentPokemons && currentPokemons.map(el => {
                     return (
                     <Card name={el.name} sprite={el.sprite} types={el.types}/>
                 )})
+                // sprite ={ el.sprite ? el.sprite : <img src ="url por default"/> }
             }
 
         </div>
