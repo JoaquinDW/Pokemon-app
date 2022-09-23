@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       type: STRING,
       allowNull: false,
     },
-    imageCard: {
+    sprite: {
       type: TEXT,
     },
     imageDetail: {

@@ -32,8 +32,7 @@ router.post('/' ,async(req,res) => {
     try{
         const {
             name,
-            imageCard,
-            imageDetail,
+            sprite,
             height,
             weight,
             baseExp,
@@ -46,8 +45,7 @@ router.post('/' ,async(req,res) => {
         
         let pokemonCreated = await Pokemon.create({
             name,
-            imageCard,
-            imageDetail,
+            sprite,
             height,
             weight,
             baseExp,

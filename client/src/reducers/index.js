@@ -1,4 +1,5 @@
 
+
 const initialState = {
     pokemons : [],
     allPokemons: [],
@@ -28,7 +29,13 @@ function rootReducer(state = initialState, action){
                 }
             case 'FILTER_CREATED':
                 const allSavedPokemons = state.allPokemons;
-                const filterCreateOrExisting = action.payload === "created" ? allSavedPokemons.filter(p => p.id.length > 20) : allSavedPokemons.filter(p => p.id <= 40); 
+                const filterCreateOrExisting = action.payload === "created" ? allSavedPokemons.filter(p => p.id.length) : 
+                action.payload === "api" ?
+                 allSavedPokemons.filter(p => { 
+                    let result 
+                    if(typeof p.id === "number") return result = p.id
+                    return result
+                }) : allSavedPokemons
                 return {
                     ...state,
                     pokemons: filterCreateOrExisting

@@ -39,6 +39,7 @@ export default function Home(){
 
     function handleFilterCreated(e){
         dispatch(filterCreated(e.target.value))
+        setCurrentPage(1)
     }
     function handleFilterOrder(e){
         e.preventDefault()
@@ -112,7 +113,7 @@ export default function Home(){
             {
                 currentPokemons && currentPokemons.map(el => {
                     return (
-                    <Card name={el.name} sprite={el.sprite ? el.sprite : <img src="https://i.pinimg.com/236x/bb/65/ac/bb65acb8eced7c4a1fbce90916211e80--sticker-vinyl-car-decals.jpg" alt="Custom pokemon"/>} types={el.types} key={el.id}/>
+                    <Card name={el.name} sprite={el.sprite} types={el.types} key={el.id}/>
                 )})
                 // sprite ={ el.sprite ? el.sprite : <img src ="url por default"/> }
             }

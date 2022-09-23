@@ -51,6 +51,9 @@ export default function CreatePokemon(){
 
     function handleSubmit(e){
         e.preventDefault()
+        if(!input.sprite){
+            return input.sprite = "https://i.pinimg.com/236x/bb/65/ac/bb65acb8eced7c4a1fbce90916211e80--sticker-vinyl-car-decals.jpg"
+        }
         dispatch(postPokemon(input))
         alert("Pokemon has been created successfully")
         setInput({
@@ -114,7 +117,7 @@ export default function CreatePokemon(){
                 </div>
                 <div>
                     <label htmlFor="">image</label>
-                    <input type="text" value={input.sprite} name="sprite"onChange={handleChange}/>
+                    <input type="text" value={input.sprite} name="sprite"onChange={handleChange} />
                 </div>
 
 
