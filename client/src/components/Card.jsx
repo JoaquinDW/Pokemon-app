@@ -12,7 +12,7 @@ export default function Card({name, sprite, types}){
             </div>
             <div>
                 {types.map((el) => 
-                 <h5>{el.name}</h5>)}
+                 <h5 key={el.name}>{el.name}</h5>)}
             </div>
         </div>
     )

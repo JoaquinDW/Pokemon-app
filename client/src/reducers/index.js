@@ -28,11 +28,11 @@ function rootReducer(state = initialState, action){
                 }
             case 'FILTER_CREATED':
                 const allSavedPokemons = state.allPokemons;
-                const filterCreateOrExisting = action.payload === "created" ? allSavedPokemons.filter(p => p.id_Pokemon.length > 20) : allSavedPokemons.filter(p => p.id_Pokemon <= 40); 
+                const filterCreateOrExisting = action.payload === "created" ? allSavedPokemons.filter(p => p.id.length > 20) : allSavedPokemons.filter(p => p.id <= 40); 
                 return {
                     ...state,
                     pokemons: filterCreateOrExisting
-                    }
+                }
         case 'ORDER_BY_NAME':
             const sortedArr = action.payload === 'asc' ?
              state.pokemons.sort(function (a, b){ 

@@ -14,7 +14,7 @@ export default function Home(){
     const [order, setOrder] = useState('')
     const [orderAttack, setOrderAttack] = useState('')
     const [pokemonsPP, setPokemonsPP] = useState(12)
-    const lastPokemonIndex = currentPage + pokemonsPP
+    const lastPokemonIndex = currentPage * pokemonsPP
     const firstPokemonIndex = lastPokemonIndex - pokemonsPP
     const currentPokemons = allPokemons.slice(firstPokemonIndex, lastPokemonIndex)
 
@@ -101,16 +101,18 @@ export default function Home(){
                 </select>
                 
             </div>
+
             <Paginado
             pokemonsPP={pokemonsPP}
             allPokemons={allPokemons.length}
             paginado={paginado}
             />
+
             <SearchBar/>
             {
                 currentPokemons && currentPokemons.map(el => {
                     return (
-                    <Card name={el.name} sprite={el.sprite} types={el.types}/>
+                    <Card name={el.name} sprite={el.sprite ? el.sprite : <img src="https://i.pinimg.com/236x/bb/65/ac/bb65acb8eced7c4a1fbce90916211e80--sticker-vinyl-car-decals.jpg" alt="Custom pokemon"/>} types={el.types} key={el.id}/>
                 )})
                 // sprite ={ el.sprite ? el.sprite : <img src ="url por default"/> }
             }

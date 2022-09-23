@@ -3,8 +3,8 @@ import React from 'react'
 export default function Paginado({pokemonsPP, allPokemons, paginado}){
     const pageNumbers = []
 
-    for(let i = 0; i<= Math.ceil(allPokemons/pokemonsPP); i++){
-        pageNumbers.push(i+1)
+    for(let i = 1; i<= Math.ceil(allPokemons/pokemonsPP); i++){
+        pageNumbers.push(i)
     }
 
     return(
