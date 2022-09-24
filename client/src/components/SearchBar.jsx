@@ -8,11 +8,12 @@ export default function SearchBar(){
     const [name , setName] = useState('')
     
     function handleInputChange(e){
-        e.prevent.default()
+        console.log(e.target.value)
+        e.preventDefault()
         setName(e.target.value)
     }
     function handleSubmit(e){
-        e.prevent.default()
+        e.preventDefault()
         dispatch(getNamePokemons(name))
         setName('')
     }
@@ -25,7 +26,7 @@ export default function SearchBar(){
              value={name}
              onChange = {(e) => handleInputChange(e)}
             />
-            <button type='submit' onClick={(e) => handleSubmit(e)}>Search</button>
+            <button type='submit' onClick={(e) => handleSubmit(e)}> Search </button>
         </div>
     )
 }

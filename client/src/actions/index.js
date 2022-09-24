@@ -10,20 +10,20 @@ export function getPokemons(){
         })
     }
 }
-export function getNamePokemons(name){
-   return async function(dispatch){
-    try{
-        var json = await axios.get('http//localhost:3001/pokemons?name=' + name)
-        return dispatch({
+export function getNamePokemons(payload){
+   //return async function(dispatch){
+    //try{
+      //  var json = await axios.get('http//localhost:3001/pokemons?name=' + name)
+        return{ //dispatch({
             type: 'GET_POKEMONS_NAME',
-            payload: json.data
-        })
+            payload: payload
+        }//)
     }
-    catch(err){
-        console.log(err)
-    }
-   }
-}
+    //catch(err){
+     //   console.log(err)
+    //}
+  // }
+
 export function filterByType(payload){
     return{
         type: 'FILTER_TYPES',

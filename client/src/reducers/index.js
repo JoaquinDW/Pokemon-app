@@ -16,9 +16,12 @@ function rootReducer(state = initialState, action){
                 allPokemons: action.payload
             }
             case 'GET_POKEMONS_NAME':
+                const searchName = state.allPokemons.filter((el) => {
+                    return el.name.includes(action.payload)
+                })
                 return{
                     ...state,
-                    pokemons: action.payload
+                    pokemons: searchName
                 }
             case 'FILTER_TYPES':
                 const allPokemons = state.allPokemons
