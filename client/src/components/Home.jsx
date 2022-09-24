@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Card from './Card'
 import Paginado from './Paginado'
 import SearchBar from './SearchBar'
+import Detail from './Detail'
 
 export default function Home(){
 
@@ -38,6 +39,7 @@ export default function Home(){
     }
 
     function handleFilterCreated(e){
+        e.preventDefault()
         dispatch(filterCreated(e.target.value))
         setCurrentPage(1)
     }
@@ -113,7 +115,9 @@ export default function Home(){
             {
                 currentPokemons && currentPokemons.map(el => {
                     return (
+                    <Link to={`/pokemons/${el.id}`}  >
                     <Card name={el.name} sprite={el.sprite} types={el.types} key={el.id}/>
+                    </Link>
                 )})
                 // sprite ={ el.sprite ? el.sprite : <img src ="url por default"/> }
             }

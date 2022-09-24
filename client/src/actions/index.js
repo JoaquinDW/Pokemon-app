@@ -68,3 +68,16 @@ export function postPokemon(payload){
         return data
     }
 }
+export function getDetail(id){
+    return async function(dispatch){
+        try{
+        const json = await axios.get(`http://localhost:3001/pokemons/${id}`)
+            return dispatch({
+                type: 'GET_DETAIL',
+                payload: json.data
+            })
+        } catch(err){
+            console.log(err)
+        }
+    }
+}

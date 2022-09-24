@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { getTypes, postPokemon } from '../actions'
+import { getPokemons, getTypes, postPokemon } from '../actions'
 import { useDispatch, useSelector} from 'react-redux'
 
 export default function CreatePokemon(){
@@ -20,6 +20,13 @@ export default function CreatePokemon(){
         sprite:"" ,
         types: []
     })
+
+    function handleDelete(e){
+        setInput({
+            ...input,
+            types: input.types.filter((el) => el !== e)
+        })
+    }
 
     function validate(el) {
         let errors= {}
@@ -48,6 +55,7 @@ export default function CreatePokemon(){
         })
         setErr(validate({ ...input, types: [...input.types, e.target.value] }));
     }
+  
 
     function handleSubmit(e){
         e.preventDefault()
@@ -130,6 +138,13 @@ export default function CreatePokemon(){
                         ))}
                     </select>
                 </div>
+                {err.type && (<p>{err.type}</p>)}
+                {input.types?.map((el) => (
+              <div  className='cp_types'>
+                  <button onClick={() => handleDelete(el)} > x </button>
+                <p>{el}</p>
+              </div>
+            ))}
                 
                 <button type='submit' >Create pokemon</button>
 
