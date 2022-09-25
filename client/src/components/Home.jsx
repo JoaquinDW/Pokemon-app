@@ -6,6 +6,7 @@ import Card from './Card'
 import Paginado from './Paginado'
 import SearchBar from './SearchBar'
 import Detail from './Detail'
+import styles from './styles/Home.module.css'
 
 export default function Home(){
 
@@ -27,11 +28,6 @@ export default function Home(){
     useEffect(() =>{
         dispatch(getPokemons())
     },[dispatch])
-
-    function handleClick(e){
-        e.preventDefault()
-        dispatch(getPokemons())
-    }
 
     function handleFilterType(e){
         e.preventDefault()
@@ -57,23 +53,26 @@ export default function Home(){
     }
 
     return(
-        <div>
-            <Link to='/pokemon'>Create a pokemon</Link>
-            <h1>Pokemon app</h1>
-            <button onClick={e => handleClick(e)}>Reload pokemons</button>
+        <div className={styles.container}>
+        <div >
+            <div className={styles.nav}>
+            <h1 className={styles.title}>The pokedex</h1>
+            <button  className={styles.button}>
+            <Link to='/pokemon' className={styles.link}>Create a pokemon</Link>
+            </button>
 
-            <div>
-                <select onChange={e => handleFilterOrder(e)}>
+            <div className={styles.selectContainer}>
+                <select onChange={e => handleFilterOrder(e)} className={styles.select}>
                     <option value="asc">Ascending order</option>
                     <option value="desc">Descending order</option>
                 </select>
 
-                <select onChange={e => handleFilterAttack(e)}>
-                    <option value="strong">+ Attack</option>
-                    <option value="weak">- Attack</option>
+                <select onChange={e => handleFilterAttack(e)} className={styles.select}>
+                    <option value="strong" className={styles.option}>+ Attack</option>
+                    <option value="weak" className={styles.option}>- Attack</option>
                 </select>
 
-                <select onChange={e => handleFilterType(e)}>
+                <select onChange={e => handleFilterType(e)} className={styles.select}>
                     <option value='all'>All types</option>
                     <option value='normal'>Normal</option>
                     <option value='fighting'>Fighting</option>
@@ -97,7 +96,7 @@ export default function Home(){
                     <option value='shadow'>Shadow</option>
                 </select>
 
-                <select onChange={e => handleFilterCreated(e)}>
+                <select onChange={e => handleFilterCreated(e)} className={styles.select}>
                     <option value="all">All pokemons</option>
                     <option value="api">Existing</option>
                     <option value="created">Created</option>
@@ -105,23 +104,36 @@ export default function Home(){
                 
             </div>
 
+            <div>
+                <SearchBar/>
+            </div>
+            </div>
+
+            
+
             <Paginado
             pokemonsPP={pokemonsPP}
             allPokemons={allPokemons.length}
             paginado={paginado}
             />
 
-            <SearchBar/>
+            <div className={styles.cardContainer}>
+            <div className={styles.cards}>
             {
                 currentPokemons && currentPokemons.map(el => {
                     return (
-                    <Link to={`/pokemons/${el.id}`}  >
-                    <Card name={el.name} sprite={el.sprite} types={el.types} key={el.id}/>
-                    </Link>
+                    <div className={styles.cards}>
+                        <Link to={`/pokemons/${el.id}`} className={styles.link} >
+                            <Card name={el.name} sprite={el.sprite} types={el.types} key={el.id} className={styles.cards}/>
+                        </Link>
+                    </div>
                 )})
                 // sprite ={ el.sprite ? el.sprite : <img src ="url por default"/> }
             }
+            </div>
+            </div>
 
+        </div>
         </div>
     )
 }

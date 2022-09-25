@@ -1,18 +1,20 @@
 import React from 'react'
-
+import styles from './styles/Card.module.css'
 
 export default function Card({name, sprite, types}){
     return(
-        <div>
-            <div>
-                <h3>{name}</h3>
-            </div>
-            <div>
+        <div className={styles.card}>
+
+            <div className={styles.card_img}>
                 <img src={sprite} alt="" width='150px'/>
             </div>
-            <div>
+
+            <div className={styles.card_info}>
+                <p className={styles.title}>
+                {name.toUpperCase()}
+                </p>
                 {types.map((el) => 
-                 <h5 key={el.name}>{el.name}</h5>)}
+                 <p key={el.name} className={styles.subtitle}>{el.name}</p>)}
             </div>
         </div>
     )
