@@ -57,7 +57,6 @@ router.post('/' ,async(req,res) => {
         let TypeDb = await Type.findAll({
             where: {name: types}
         })
-        //const TypeMap = TypeDb.map((el) => el.dataValues.typeId)
 
         pokemonCreated.addType(TypeDb)
         res.status(200).send("Pokemon created successfully")

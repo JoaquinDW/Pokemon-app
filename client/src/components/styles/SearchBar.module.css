@@ -20,6 +20,7 @@
   
   .search__input:hover, .search__input:focus {
     box-shadow: 0 0 1em #00000013;
+    background-color: #fafafa;
   }
   
   .search__input:focus {

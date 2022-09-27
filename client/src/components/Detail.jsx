@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getDetail } from '../actions'
+import styles from './styles/Detail.module.css'
 
 export default function Detail(props){
 
@@ -18,21 +19,26 @@ export default function Detail(props){
         <div>
             {
                 myPokemon.length > 0?
-                <div>
-                    
-                    <h1>I'm {myPokemon[0].name}</h1>
-                    <img src={myPokemon[0].sprite} alt='Pokemon'/>
-                    <h3>Types: {myPokemon[0].types.map(el => el.name)}</h3>
-                    <p>Hp: {myPokemon[0].hp}</p>
-                    <p>Attack: {myPokemon[0].attack}</p>
-                    <p>Defense: {myPokemon[0].defense}</p>
-                    <p>Speed: {myPokemon[0].speed}</p>
-                    <p>Height: {myPokemon[0].height}</p>
-                    <p>Weight: {myPokemon[0].weight}</p>
-
+                <div className={styles.container}>
+                    <div className={styles.img}>
+                        <img src={myPokemon[0].sprite} alt='Pokemon'/>
+                    </div>
+                    <div className={styles.infoContainer}>
+                    <div className={styles.info}>
+                        <div className={styles.name}>
+                        <h1>{myPokemon[0].name.toUpperCase()}</h1>
+                        </div>
+                        <h3>Types: {myPokemon[0].types.map(el => el.name)}</h3>
+                        <p>Id: {myPokemon[0].id}</p>
+                        <p>Hp: {myPokemon[0].hp}</p>
+                        <p>Attack: {myPokemon[0].attack}</p>
+                        <p>Defense: {myPokemon[0].defense}</p>
+                        <p>Speed: {myPokemon[0].speed}</p>
+                        <p>Height: {myPokemon[0].height}</p>
+                        <p>Weight: {myPokemon[0].weight}</p>
+                    </div>
+                    </div>
                 </div>
-             
-             
              
              : <div>Loading... {console.log(myPokemon)}</div>
             } 

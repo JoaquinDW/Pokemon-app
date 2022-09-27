@@ -6,6 +6,7 @@
 }
 .button:hover{
     cursor: pointer;
+    background-color: #fafafa;
 }
 .ul{
     display: flex;

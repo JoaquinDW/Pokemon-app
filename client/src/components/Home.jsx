@@ -7,6 +7,7 @@ import Paginado from './Paginado'
 import SearchBar from './SearchBar'
 import Detail from './Detail'
 import styles from './styles/Home.module.css'
+import Loading from './Loading'
 
 export default function Home(){
 
@@ -63,13 +64,15 @@ export default function Home(){
 
             <div className={styles.selectContainer}>
                 <select onChange={e => handleFilterOrder(e)} className={styles.select}>
+                    <option value="">Order by Name</option>
                     <option value="asc">Ascending order</option>
                     <option value="desc">Descending order</option>
                 </select>
 
                 <select onChange={e => handleFilterAttack(e)} className={styles.select}>
-                    <option value="strong" className={styles.option}>+ Attack</option>
-                    <option value="weak" className={styles.option}>- Attack</option>
+                    <option value="">Order by Attack</option>
+                    <option value="strong" >+ Attack</option>
+                    <option value="weak" >- Attack</option>
                 </select>
 
                 <select onChange={e => handleFilterType(e)} className={styles.select}>
@@ -118,19 +121,21 @@ export default function Home(){
             />
 
             <div className={styles.cardContainer}>
-            <div className={styles.cards}>
-            {
-                currentPokemons && currentPokemons.map(el => {
-                    return (
-                    <div className={styles.cards}>
-                        <Link to={`/pokemons/${el.id}`} className={styles.link} >
-                            <Card name={el.name} sprite={el.sprite} types={el.types} key={el.id} className={styles.cards}/>
-                        </Link>
-                    </div>
-                )})
-                // sprite ={ el.sprite ? el.sprite : <img src ="url por default"/> }
-            }
-            </div>
+                <div className={styles.cards}>
+                { 
+                    currentPokemons.length ? currentPokemons.map(el => {
+                        return (
+                        <div className={styles.cards}>
+                            <Link to={`/pokemons/${el.id}`} className={styles.link} >
+                                <Card name={el.name} sprite={el.sprite} types={el.types} key={el.id} className={styles.cards}/>
+                            </Link>
+                        </div>
+                        
+                            )
+                        }
+                    ): <Loading/> 
+                } 
+                </div>
             </div>
 
         </div>

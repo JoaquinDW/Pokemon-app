@@ -47,13 +47,13 @@ function rootReducer(state = initialState, action){
         case 'ORDER_BY_NAME':
             const sortedArr = action.payload === 'asc' ?
              state.pokemons.sort(function (a, b){ 
-                if(a.name > b.name) return 1;
-                if(a.name < b.name) return -1;
+                if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+                if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
                 return 0;
             }) : 
             state.pokemons.sort(function (a, b) {
-                if(a.name > b.name) return -1;
-                if(a.name < b.name) return 1;
+                if(a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+                if(a.name.toLowerCase() < b.name.toLowerCase()) return 1;
                 return 0;
             });
             return {
