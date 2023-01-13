@@ -11,18 +11,12 @@ export function getPokemons(){
     }
 }
 export function getNamePokemons(payload){
-   //return async function(dispatch){
-    //try{
-      //  var json = await axios.get('http//localhost:3001/pokemons?name=' + name)
-        return{ //dispatch({
+        return{ 
             type: 'GET_POKEMONS_NAME',
             payload: payload
-        }//)
+        }
     }
-    //catch(err){
-     //   console.log(err)
-    //}
-  // }
+    
 
 export function filterByType(payload){
     return{

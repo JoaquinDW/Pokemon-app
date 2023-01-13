@@ -50,31 +50,31 @@ function rootReducer(state = initialState, action){
                 if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
                 if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
                 return 0;
-            }) : 
+            }) : action.payload === 'desc' ?
             state.pokemons.sort(function (a, b) {
                 if(a.name.toLowerCase() > b.name.toLowerCase()) return -1;
                 if(a.name.toLowerCase() < b.name.toLowerCase()) return 1;
                 return 0;
-            });
+            }) : state.pokemons
             return {
                 ...state,
                 pokemons: sortedArr
             }
             
             case 'ORDER_BY_ATTACK':
-                    
+                
                 const sortAttack = action.payload === 'strong' ?
                 state.pokemons.sort(function (a, b) {
                     if(a.attack > b.attack) return -1; 
                     if(b.attack > a.attack) return 1;
                     return 0;
                 })
-                :
+                : action.payload === 'weak' ?
                 state.pokemons.sort(function(a, b) {
                  if(a.attack > b.attack) return 1; 
                  if(b.attack > a.attack) return -1;
                  return 0;
-                }) 
+                }) : state.pokemons
                  return {
                      ...state,
                      pokemons:sortAttack,

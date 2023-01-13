@@ -50,21 +50,26 @@ export default function CreatePokemon(){
     }
 
     function handleSelect(e){
-        setInput({
-            ...input,
-            types: [...input.types,e.target.value]
-        })
+        if(!input.types.includes(e.target.value)){
+            setInput({
+                ...input,
+                types: [...input.types,e.target.value]
+            })
+        } else{
+            alert("cant select the same type")
+        }
+        
         setErr(validate({ ...input, types: [...input.types, e.target.value] }));
     }
   
 
     function handleSubmit(e){
         e.preventDefault()
-        if(err.name || err.type || err.hp || input.name === "" || input.hp.length === 0){
+        if(err.name || err.type || err.hp || input.name === "" || input.hp.length === 0 || input.types.length === 0){
             alert("Cant create pokemon without data")
         } else{
         if(!input.sprite){
-            return input.sprite = "https://i.pinimg.com/236x/bb/65/ac/bb65acb8eced7c4a1fbce90916211e80--sticker-vinyl-car-decals.jpg"
+            return input.sprite = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Pokebola-pokeball-png-0.png/769px-Pokebola-pokeball-png-0.png"
         }
         dispatch(postPokemon(input))
         alert("Pokemon has been created successfully")

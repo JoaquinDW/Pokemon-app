@@ -9,20 +9,24 @@ const {Pokemon, Type} = require('../db')
     let pokemonsApi = await Promise.all(subReq)
 
     let apiPokemons = pokemonsApi.map((el) =>{
-
-        const obj = {
-            id: el.data.id,
-            name: el.data.name,
-            hp: el.data.stats[0].base_stat,
-            attack: el.data.stats[1].base_stat,
-            defense: el.data.stats[2].base_stat,
-            speed: el.data.stats[5].base_stat,
-            height: el.data.height,
-            weight: el.data.weight,
-            sprite: el.data.sprites.other["official-artwork"].front_default,
-            types: el.data.types.map(el => {return {name:el.type.name}}),//es para tener un objeto y acceder al name desde el front 
+        try{
+            const obj = {
+                id: el.data.id,
+                name: el.data.name,
+                hp: el.data.stats[0].base_stat,
+                attack: el.data.stats[1].base_stat,
+                defense: el.data.stats[2].base_stat,
+                speed: el.data.stats[5].base_stat,
+                height: el.data.height,
+                weight: el.data.weight,
+                sprite: el.data.sprites.other["official-artwork"].front_default,
+                types: el.data.types.map(el => {return {name:el.type.name}}),//es para tener un objeto y acceder al name desde el front 
+            }
+            return obj
+        } catch(err){
+            console.log(err)
         }
-        return obj
+        
     })
     return apiPokemons
 }

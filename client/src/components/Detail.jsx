@@ -21,7 +21,7 @@ export default function Detail(props){
                 myPokemon.length > 0?
                 <div className={styles.container}>
                     <div className={styles.img}>
-                        <img src={myPokemon[0].sprite} alt='Pokemon'/>
+                        <img src={myPokemon[0].sprite} alt='Pokemon' className={styles.image}/>
                     </div>
                     <div className={styles.infoContainer}>
                     <div className={styles.info}>

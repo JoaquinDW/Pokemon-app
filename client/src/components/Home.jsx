@@ -11,8 +11,8 @@ import Loading from './Loading'
 
 export default function Home(){
 
-    const dispatch = useDispatch() // === mapPropsToState
-    const allPokemons = useSelector((state) => state.pokemons) // === mapStateToProps
+    const dispatch = useDispatch() 
+    const allPokemons = useSelector((state) => state.pokemons) 
     const [currentPage , setCurrentPage] = useState(1)
     const [order, setOrder] = useState('')
     const [orderAttack, setOrderAttack] = useState('')
@@ -142,3 +142,5 @@ export default function Home(){
         </div>
     )
 }
+
+

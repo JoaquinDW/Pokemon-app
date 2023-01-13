@@ -4,7 +4,8 @@ import { getNamePokemons } from '../actions'
 import styles from './styles/SearchBar.module.css'
 
 export default function SearchBar(){
-    
+
+    const [currentPage, setCurrentPage] = useState(1)
     const dispatch = useDispatch()
     const [name , setName] = useState('')
     
@@ -17,6 +18,7 @@ export default function SearchBar(){
         e.preventDefault()
         dispatch(getNamePokemons(name))
         setName('')
+        setCurrentPage(1)
     }
 
     return(
