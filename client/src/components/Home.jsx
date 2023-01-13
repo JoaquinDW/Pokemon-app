@@ -38,6 +38,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(getPokemons());
     setIsLoading(false);
+    console.log(currentPokemons);
   }, [dispatch]);
 
   function handleFilterType(e) {
