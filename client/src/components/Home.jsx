@@ -23,6 +23,7 @@ export default function Home() {
   const [order, setOrder] = useState("");
   const [orderAttack, setOrderAttack] = useState("");
   const [pokemonsPP, setPokemonsPP] = useState(12);
+  const [isLoading, setIsLoading] = useState(true);
   const lastPokemonIndex = currentPage * pokemonsPP;
   const firstPokemonIndex = lastPokemonIndex - pokemonsPP;
   const currentPokemons = allPokemons.slice(
@@ -36,6 +37,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getPokemons());
+    setIsLoading(false);
   }, [dispatch]);
 
   function handleFilterType(e) {
@@ -141,24 +143,20 @@ export default function Home() {
 
         <div className={styles.cardContainer}>
           <div className={styles.cards}>
-            {currentPokemons.length ? (
-              currentPokemons.map((el) => {
-                return (
-                  <div className={styles.cards}>
-                    <Link to={`/pokemons/${el.id}`} className={styles.link}>
-                      <Card
-                        name={el.name}
-                        sprite={el.sprite}
-                        types={el.types}
-                        key={el.id}
-                        className={styles.cards}
-                      />
-                    </Link>
-                  </div>
-                );
-              })
-            ) : (
+            {isLoading ? (
               <Loading />
+            ) : (
+              <div className={styles.cards}>
+                <Link to={`/pokemons/${el.id}`} className={styles.link}>
+                  <Card
+                    name={el.name}
+                    sprite={el.sprite}
+                    types={el.types}
+                    key={el.id}
+                    className={styles.cards}
+                  />
+                </Link>
+              </div>
             )}
           </div>
         </div>
