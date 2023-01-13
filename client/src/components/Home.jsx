@@ -146,17 +146,21 @@ export default function Home() {
             {isLoading ? (
               <Loading />
             ) : (
-              <div className={styles.cards}>
-                <Link to={`/pokemons/${el.id}`} className={styles.link}>
-                  <Card
-                    name={el.name}
-                    sprite={el.sprite}
-                    types={el.types}
-                    key={el.id}
-                    className={styles.cards}
-                  />
-                </Link>
-              </div>
+              <>
+                {currentPokemons.map((el) => {
+                  <div className={styles.cards}>
+                    <Link to={`/pokemons/${el.id}`} className={styles.link}>
+                      <Card
+                        name={el.name}
+                        sprite={el.sprite}
+                        types={el.types}
+                        key={el.id}
+                        className={styles.cards}
+                      />
+                    </Link>
+                  </div>;
+                })}
+              </>
             )}
           </div>
         </div>
