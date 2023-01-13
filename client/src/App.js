@@ -4,8 +4,8 @@ import Home from './components/Home'
 import Landing from './components/Landing'
 import CreatePokemon from './components/CreatePokemon'
 import Detail from './components/Detail';
-
-
+import axios from 'axios';
+axios.defaults.baseURL = "https://pokemon-app-umber-sigma.vercel.app/"
 function App() {
   return (
     <BrowserRouter>
